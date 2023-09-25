@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../core/routes/app_routes.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -13,7 +15,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Scaffold(),
+      initialRoute: Routes.intitlRoute,
+      onGenerateRoute: AppRoutes.generateRoute,
     );
   }
 }

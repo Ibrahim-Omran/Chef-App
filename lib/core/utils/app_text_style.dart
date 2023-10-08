@@ -1,5 +1,6 @@
 import 'package:chef_app/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 TextStyle _textStyle({
@@ -9,7 +10,7 @@ TextStyle _textStyle({
 }) {
   return GoogleFonts.lato(
     color: color,
-    fontSize: fontSize,
+    fontSize: fontSize.sp,
     fontWeight: fontWeight,
   );
 }
@@ -17,7 +18,7 @@ TextStyle _textStyle({
 // bold style
 TextStyle boldStyle({
   Color color = AppColors.white,
-  double fontSize = 24,
+  double fontSize = 32,
 }) =>
     _textStyle(
       color: color,

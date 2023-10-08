@@ -38,6 +38,7 @@ dependencies:
   google_fonts: ^6.1.0
   shared_preferences: ^2.2.1
   dio: ^5.3.3
+  flutter_screenutil: ^5.9.0
 
 dev_dependencies:
   flutter_test:

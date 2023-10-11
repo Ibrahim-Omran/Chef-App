@@ -69,6 +69,7 @@ class CacheHelper {
       return await sharedPreferences.setInt(key, value);
     }
   }
+
     final String _cachedCode = "cachedCode";
 
    String getCachedLanguage() {

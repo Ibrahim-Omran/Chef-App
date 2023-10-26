@@ -31,20 +31,29 @@ ThemeData getAppTheme() {
 
     // text field
     inputDecorationTheme: InputDecorationTheme(
+
       //enabled Border
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(
-          color: AppColors.grey,
-        ),
+        // borderSide: const BorderSide(
+        //   color: AppColors.grey,
+        // ),
       ),
 
       //focused Border
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(
-          color: AppColors.grey,
-        ),
+        // borderSide: const BorderSide(
+        //   color: AppColors.grey,
+        // ),
+      ),
+
+      //error Border
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+         // borderSide: const BorderSide(
+         //  color: AppColors.grey,
+         // ),
       ),
 
       //hint text

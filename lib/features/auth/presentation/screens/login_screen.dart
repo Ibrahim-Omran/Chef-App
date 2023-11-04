@@ -1,8 +1,11 @@
 import 'package:chef_app/core/locale/app_locale.dart';
+import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_assets.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
+import 'package:chef_app/core/utils/commons.dart';
 import 'package:chef_app/core/widget/custom_button.dart';
 import 'package:chef_app/core/widget/custom_image.dart';
+import 'package:chef_app/core/widget/custom_loading_indecator.dart';
 import 'package:chef_app/core/widget/custom_text_form_field.dart';
 import 'package:chef_app/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:chef_app/features/auth/presentation/cubit/login_cubit/login_state.dart';
@@ -39,9 +42,21 @@ class LoginScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(24.0),
-                child: BlocConsumer<LoginCubit,LoginState>(
-                  listener: (context,state){
+                child: BlocConsumer<LoginCubit, LoginState>(
+                  listener: (context, state) {
 
+                    if (state is LoginSuccessState) {
+                      showToast(
+                        message: AppStrings.loginSuccessfully.tr(context),
+                        state: ToastState.success,
+                      );
+                    }
+                    if (state is LoginErrorState) {
+                      showToast(
+                        message: state.message,
+                        state: ToastState.error,
+                      );
+                    }
 
                   },
                   builder: (context, state) {
@@ -55,7 +70,8 @@ class LoginScreen extends StatelessWidget {
                             controller: cubit.emailController,
                             hintText: AppStrings.email.tr(context),
                             validator: (data) {
-                              if (data!.isEmpty || !data.contains('@gmail.com')) {
+                              if (data!.isEmpty ||
+                                  !data.contains('@gmail.com')) {
                                 return AppStrings.pleaseEnterValidEmail
                                     .tr(context);
                               }
@@ -92,8 +108,14 @@ class LoginScreen extends StatelessWidget {
                           // forget password..
                           Row(
                             children: [
-                              Text(
-                                AppStrings.forgetPassword.tr(context),
+                              TextButton(
+                                onPressed: () {
+                                  navigateReplacement(
+                                      context: context, route: Routes.sendCode);
+                                },
+                                child: Text(
+                                  AppStrings.forgetPassword.tr(context),
+                                ),
                               ),
                             ],
                           ),
@@ -102,18 +124,24 @@ class LoginScreen extends StatelessWidget {
                             height: 32.h,
                           ),
 
-                          CustomButton(
-                            onPressed: () {
-                              if(cubit.loginKey.currentState!.validate()){
-                                cubit.login();
-                              }
-                            },
-                            text: AppStrings.signIn.tr(context),
-                          ),
+
+
+                          // button login
+                          state is LoginLoadingState
+                              ? const CustomLoadingIndicator()
+                              : CustomButton(
+                                  onPressed: () {
+                                    if (cubit.loginKey.currentState!
+                                        .validate()) {
+                                      cubit.login();
+                                    }
+                                  },
+                                  text: AppStrings.signIn.tr(context),
+                                ),
                         ],
                       ),
                     );
-                  }
+                  },
                 ),
               ),
             ],

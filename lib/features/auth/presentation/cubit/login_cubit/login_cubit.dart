@@ -1,14 +1,17 @@
+import 'package:chef_app/core/database/api/end_points.dart';
+import 'package:chef_app/core/database/cache/cache_helper.dart';
 import 'package:chef_app/features/auth/data/models/login_model.dart';
 import 'package:chef_app/features/auth/data/repository/auth_repository.dart';
 import 'package:chef_app/features/auth/presentation/cubit/login_cubit/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/service/service_locator.dart';
+
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.authRepo) : super(LoginInitial());
 
   final AuthRepository authRepo;
-
   GlobalKey<FormState> loginKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -24,7 +27,8 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   //login method
-  LoginModel? loginModel ;
+  LoginModel? loginModel;
+
   void login() async {
     emit(LoginLoadingState());
     final result = await authRepo.login(
@@ -33,8 +37,13 @@ class LoginCubit extends Cubit<LoginState> {
     );
     result.fold(
       (l) => emit(LoginErrorState(l)),
-      (r) {
-        loginModel = r ;
+      (r) async {
+        loginModel = r;
+        //Save Token
+        await sl<CacheHelper>().saveData(
+          key: ApiKeys.token,
+          value: r.token,
+        );
         emit(LoginSuccessState());
       },
     );

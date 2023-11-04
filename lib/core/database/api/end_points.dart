@@ -32,4 +32,6 @@ class ApiKeys {
   static const String password = 'password';
   static const String message = 'message';
   static const String token = 'token';
+  static const String confirmPassword = 'confirmPassword';
+  static const String code = 'code';
 }

@@ -31,7 +31,6 @@ ThemeData getAppTheme() {
 
     // text field
     inputDecorationTheme: InputDecorationTheme(
-
       //enabled Border
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
@@ -51,9 +50,9 @@ ThemeData getAppTheme() {
       //error Border
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-         // borderSide: const BorderSide(
-         //  color: AppColors.grey,
-         // ),
+        // borderSide: const BorderSide(
+        //  color: AppColors.grey,
+        // ),
       ),
 
       //hint text
@@ -61,6 +60,18 @@ ThemeData getAppTheme() {
 
       // filled: true,
       // fillColor: AppColors.backGroundTextField,
+    ),
+
+    // text button Style ..
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all(
+          AppColors.grey,
+        ),
+        textStyle: MaterialStateProperty.all(
+          boldStyle(color: AppColors.grey, fontSize: 16),
+        ),
+      ),
     ),
   );
 }

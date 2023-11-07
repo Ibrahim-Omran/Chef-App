@@ -34,7 +34,7 @@ class CustomButton extends StatelessWidget {
         child: Text(
           text,
           style:
-          Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 24),
+          Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 20.sp),
         ),
       ),
     );

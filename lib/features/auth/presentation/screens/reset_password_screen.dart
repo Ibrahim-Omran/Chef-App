@@ -165,6 +165,10 @@ class ResetPasswordScreen extends StatelessWidget {
                           },
                           text: AppStrings.createYourNewPassword.tr(context),
                         ),
+
+                  SizedBox(
+                    height: 26.h,
+                  ),
                 ],
               ),
             );

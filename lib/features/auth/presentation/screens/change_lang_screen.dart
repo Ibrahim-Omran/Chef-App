@@ -3,11 +3,13 @@ import 'package:chef_app/core/bloc/cubit/global_state.dart';
 import 'package:chef_app/core/locale/app_locale.dart';
 import 'package:chef_app/core/utils/app_assets.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
+import 'package:chef_app/core/utils/commons.dart';
 import 'package:chef_app/core/widget/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widget/custom_button.dart';
 
@@ -56,33 +58,39 @@ class ChangeLangScreen extends StatelessWidget {
                   SizedBox(
                     height: 120.h,
                   ),
-                  BlocBuilder<GlobalCubit,GlobalState>(
-                    builder: (context,state) {
-                      final cubit = BlocProvider.of<GlobalCubit>(context);
-                      return Row(
-                        children: [
-                          CustomButton(
-                            text:'English',
-                            background: AppColors.black,
-                            width: 140,
-                            onPressed: (){
-                              cubit.changeLang('en');
-                            },
-                          ),
-                          const Spacer(),
-                          CustomButton(
-                            text:'العربية',
-                            background: AppColors.black,
-                            width: 140,
-                            onPressed: (){
-                              cubit.changeLang('ar');
-
-                            },
-                          ),
-                        ],
-                      );
-                    }
-                  ),
+                  BlocBuilder<GlobalCubit, GlobalState>(
+                      builder: (context, state) {
+                    final cubit = BlocProvider.of<GlobalCubit>(context);
+                    return Row(
+                      children: [
+                        CustomButton(
+                          text: 'English',
+                          background: AppColors.black,
+                          width: 140,
+                          onPressed: () {
+                            cubit.changeLang('en');
+                            navigate(
+                              context: context,
+                              route: Routes.login,
+                            );
+                          },
+                        ),
+                        const Spacer(),
+                        CustomButton(
+                          text: 'العربية',
+                          background: AppColors.black,
+                          width: 140,
+                          onPressed: () {
+                            cubit.changeLang('ar');
+                            navigate(
+                              context: context,
+                              route: Routes.login,
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  }),
                 ],
               ),
             ),
@@ -92,4 +100,3 @@ class ChangeLangScreen extends StatelessWidget {
     );
   }
 }
-

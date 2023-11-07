@@ -77,13 +77,14 @@ class DioConsumer extends ApiConsumer {
   @override
   Future post(
     String path, {
-    Object? data,
+    dynamic data,
     Map<String, dynamic>? queryParameters,
+        bool isFormData = false ,
   }) async {
     try {
       var res = await dio.post(
         path,
-        data: data,
+        data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
       return res.data;
@@ -125,10 +126,10 @@ class DioConsumer extends ApiConsumer {
           // print(e.response);
         }
       case DioExceptionType.cancel:
-        throw CancleExeption(ErrorModel.fromJson(e.response!.data));
+        throw ServerException(ErrorModel(status: 500,errorMessage: e.toString()));
 
       case DioExceptionType.unknown:
-        throw ServerException(ErrorModel.fromJson(e.response!.data));
+        throw ServerException(ErrorModel(status: 500,errorMessage: e.toString()));
 
       // throw ServerException('badResponse');
     }

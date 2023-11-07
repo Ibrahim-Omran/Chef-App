@@ -23,4 +23,5 @@ class GlobalCubit extends Cubit<GlobalState>{
     langCode = cachedLang;
     emit(ChangeLangSuccess());
   }
+
 }

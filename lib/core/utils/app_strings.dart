@@ -41,7 +41,10 @@ class AppStrings {
   //! home-order-menu
   static const String addDishToMenu = 'addDishToMenu';
   static const String mealName = 'mealName';
+  static const String menu = 'menu';
+  static const String profile = 'profile';
   static const String mealDesc = 'mealDesc';
+  static const String deleteMeal= 'deleteMeal';
   static const String mealPrice = 'mealPrice';
   static const String mealNumber = 'mealNumber';
   static const String mealQuantity = 'mealQuantity';
@@ -68,4 +71,6 @@ class AppStrings {
   static const String changePassword = 'changePassword';
   static const String ok = 'ok';
   static const String cancel = 'cancel';
+  static const String category = 'category';
+  static const String noMeals = 'noMeals';
 }

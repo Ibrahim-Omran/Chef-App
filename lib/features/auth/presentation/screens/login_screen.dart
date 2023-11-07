@@ -44,11 +44,14 @@ class LoginScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(24.0),
                 child: BlocConsumer<LoginCubit, LoginState>(
                   listener: (context, state) {
-
                     if (state is LoginSuccessState) {
                       showToast(
                         message: AppStrings.loginSuccessfully.tr(context),
                         state: ToastState.success,
+                      );
+                      navigateReplacement(
+                        context: context,
+                        route: Routes.home,
                       );
                     }
                     if (state is LoginErrorState) {
@@ -57,7 +60,6 @@ class LoginScreen extends StatelessWidget {
                         state: ToastState.error,
                       );
                     }
-
                   },
                   builder: (context, state) {
                     final cubit = BlocProvider.of<LoginCubit>(context);
@@ -123,8 +125,6 @@ class LoginScreen extends StatelessWidget {
                           SizedBox(
                             height: 32.h,
                           ),
-
-
 
                           // button login
                           state is LoginLoadingState

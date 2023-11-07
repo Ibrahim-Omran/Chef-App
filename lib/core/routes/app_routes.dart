@@ -1,3 +1,4 @@
+import 'package:chef_app/features/home/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chef_app/features/auth/presentation/screens/change_lang_screen.dart';
@@ -15,6 +16,7 @@ import '../../features/menu/presentation/screens/add_meal_screen.dart';
 class Routes {
   static const String intitlRoute = '/';
 
+  static const String home = '/home';
   static const String login = '/login';
   static const String changeLan = '/changeLan';
   static const String sendCode = '/sendCode';
@@ -31,7 +33,7 @@ class AppRoutes {
   static Route? generateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.intitlRoute:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
       case Routes.login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case Routes.changeLan:
@@ -52,6 +54,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const SettingScreen());
       case Routes.changePassword:
         return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
+      case Routes.home:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(
